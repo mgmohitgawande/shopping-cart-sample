@@ -1,1 +1,3 @@
 bower_components
+
+mongodb://username:password@hostname:port/database

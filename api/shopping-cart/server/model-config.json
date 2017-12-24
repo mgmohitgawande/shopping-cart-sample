@@ -37,5 +37,13 @@
   },
   "Note": {
     "dataSource": "db"
+  },
+  "Product": {
+    "dataSource": "shopping_mongo",
+    "public": true
+  },
+  "Cart": {
+    "dataSource": "shopping_mongo",
+    "public": true
   }
 }

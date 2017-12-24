@@ -2,6 +2,8 @@
     <head>
         <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
         <link href='src/common/assets/css/style.css' rel='stylesheet' type='text/css'>
+        <link href='bower_components/bootstrap/dist/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+        <link href='src/common/assets/font-awesome-4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
         <script data-main="src/common/js/main.js" src="../bower_components/requirejs/require.js"></script>
         <title>
             Mohit App
@@ -11,60 +13,24 @@
     <body>
         <div class="body-wraper">
             <div class="topbar">
-                <div>
-                    <h1 style = "float: left;"><span>Bitcoin Price: </span></h1>
-                    <div id='bitcoin-price-zebpay'></div>
+                <div class="topbar-logo-container">
+                    <img class="topbar-logo" src="https://image.freepik.com/free-vector/logo-sample-text_355-558.jpg" alt="">
                 </div>
-                <div style = "float: left;" id="loading_indicator" class="loader"></div>
-          </div>
-          <div class="container">
-            <div class="body-container">
-              <div class="user-input">
-                  <div class="main-inputs"><div class="main-inputs-title">Qty: </div><input type = "number" value = "1" min="1" name="quantity_hold" id = "quantity_hold" /></div>
-                  <div class="main-inputs"><div class="main-inputs-title">Cost (Buy Price): </div><input type = "number" value = "1000" min="1" name="buy_price" id = "buy_price" /></div>
-                  <div class="main-inputs">
-                      <div class="main-inputs-title">Qty Type:</div> 
-                      <select name="quantity_type" class="quantity-type-select">
-                          <option value="btc">btc</option>
-                          <option value="bits">bits</option>
-                      </select></br></br></br>
-                  </div>
-              </div>
-              <div class="user-input">
-                  <div class="main-inputs"><div class="main-inputs-title">Buy Alarm: </div><input type = "number" min="1" name="buy_alarm" id = "quantity_hold" /></div>
-                  <div class="main-inputs"><div class="main-inputs-title">Sell Alarm: </div><input type = "number" min="1" name="sell_alarm" id = "buy_price" /></div>
-              </div>
-              <div class="action-button-group">
-                  <div id="fetchDataButton" class="button fetch-data">Fetch Data</div>
-                  <div class="fetch-data-after-space"></div>
-              </div>
-              <div class="data-comparision-table">
-                <div class="data-comparision-table-column">
-                  <h3 class="column-title">Source</h3>
-                  <div class="row-title zebpay-item">ZebPay</div>
-                  <div class="row-title coindesk-item">Coindesk</div>
+                <div class="topbar-title-container">
+                    <div class="topbar-title-content">
+                        SHOP
+                    </div>
                 </div>
-                <div class="data-comparision-table-column">
-                  <h3 class="column-title">Buy Price</h3>
-                  <div class="cell zebpay-item">INR<input name="zebpay_buy_price" disabled /></div>
-                  <div class="cell coindesk-item">INR<input name="coindesk_buy_price" disabled /></div>
+                <div class="topbar-cart-logo-container" title="Go to Cart" ui-sref="cart">
+                    <i class="fa fa-shopping-cart fa-5x" aria-hidden="true" title="Go to Cart"></i>
+                    <span class="badge badge-danger">{{cart.length}}</span>
                 </div>
-                <div class="data-comparision-table-column">
-                  <h3 class="column-title">Sell Price</h3>
-                  <div class="cell zebpay-item">INR<input name="zebpay_sell_price" disabled /></div>
-                  <div class="cell coindesk-item">INR<input name="coindesk_sell_price" disabled /></div>
-                </div>
-                <div class="data-comparision-table-column">
-                  <h3 class="column-title">Net Sell Price</h3>
-                  <div class="cell zebpay-item">INR<input name="zebpay_net_sell_price" disabled /></div>
-                  <div class="cell coindesk-item">INR<input name="coindesk_net_sell_price" disabled /></div>
-                </div>
-              </div>
             </div>
-          </div>
-          <footer class="footerbar">
-    
-          </footer>
+            <div class="main-container" ui-view="">
+            </div>
+            <div class="footer-bar">
+                MAIN CONTAINER
+            </div>
         </div>
     </body>
 </html>

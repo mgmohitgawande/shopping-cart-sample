@@ -1,13 +1,23 @@
-define(["app"], function(myApp) {
+console.log('in data factory')
+define(["shoppingCart"], function(shoppingCart) {
+    console.log('in data factory', shoppingCart)
+    var dataServiceFactory = {};
     //Data Service
-    myApp.factory('dataService', ['$http', 'myAppSettings', function($http, myAppSettings) {
-        
-        var test = function(){
-            return 'my name'
+    shoppingCart.factory('dataService', ['$http', 'shoppingCartSettings', function($http, shoppingCartSettings) {
+        console.log('akwjdhakjwdhakwhdakuwdhiuh')
+        var serviceBase = shoppingCartSettings.serverBaseUri
+        var crudApi = function(method, model, params){
+            console.log('kkkkk', params)
+            return $http({
+                method: method,
+                url: serviceBase + model,
+                // params: method == "GET" ? params : undefined,
+                data: params,
+                withCredentials: true
+            })
         }
-
-        return {
-            test : test
-        }
+        dataServiceFactory.crudApi = crudApi
+        return dataServiceFactory
     }])
 })
+console.log('hiiiiii')

@@ -2,5 +2,15 @@
   "db": {
     "name": "db",
     "connector": "memory"
+  },
+  "shopping_mongo": {
+    "host": "ds131237.mlab.com",
+    "port": 31237,
+    "url": "mongodb://shopping:shopping@ds131237.mlab.com:31237/shop",
+    "database": "shop",
+    "password": "shopping",
+    "name": "shopping_mongo",
+    "user": "shopping",
+    "connector": "mongodb"
   }
 }

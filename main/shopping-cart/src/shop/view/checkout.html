@@ -1,0 +1,26 @@
+<div class="product-list">
+        <div class="product-item" ng-repeat="product in products">
+            <div class="product-image-container-in-listing">
+                <img class="product-image" ng-src="{{product.image_urls[0]}}" alt="">
+            </div>
+            <div class="product-title-n-price-container-in-listing">
+                <div class="product-title-in-listing">
+                    {{product.title}}
+                </div>
+                <div class="product-price-in-listing">
+                    {{product.price}}
+                </div>
+            </div>
+            <div class="product-action-in-listing">
+                <div class="btn btn-success product-action-add_to_cart-in-listing">
+                    <span><i class="fa fa-cart-plus" aria-hidden="true"></i></span>
+                    <div>Add To Cart</div>
+                </div>
+                <div class="btn btn-success product-action-buy-in-listing">
+                    <span><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></span>
+                    <div>Buy</div>
+                </div>
+            </div>
+        </div>
+        <div style="font-size:30px;">{{!products.length ? 'LOADING ...' : ''}}</div>
+    </div>

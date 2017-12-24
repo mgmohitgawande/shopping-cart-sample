@@ -4,38 +4,49 @@ define([
     'uirouter',
 
 ], function (angularAMD, angular, uirouter) {
-    var myApp = angular.module('myApp', ['ui.router'])
+    var shoppingCart = angular.module('shoppingCart', ['ui.router'])
     
-    let serverBase = 'http://localhost:8001/api'
+    let serverBase = 'http://localhost:8001/api/'
     
-    myApp.constant('myAppSettings', {
+    shoppingCart.constant('shoppingCartSettings', {
         serverBaseUri: serverBase,
     });
 
-    myApp.config(function ($stateProvider){
+    shoppingCart.config(function ($stateProvider, $urlRouterProvider){
         console.log('doing  ')
+        $urlRouterProvider.otherwise("/home");
         $stateProvider
             .state('home', angularAMD.route({
                 url: '/home',
-                templateUrl: '../../src/app/views/home.html',
-                controller: 'HomeCtrl',
-                controllerUrl: '../../src/app/js/controllers/homeCtrl.js',
+                templateUrl: '../../src/shop/view/home.html',
+                controller: 'homeCtrl',
+                controllerUrl: '../../src/shop/js/controller/homeCtrl.js',
                 authenticate: false,
                 data: {
-                    pageTitle: 'Login'
+                    pageTitle: 'home'
                 }
             }))
-            .state('login', angularAMD.route({
-                url: '/login',
-                templateUrl: '../../src/app/views/login.html',
-                controller: 'LoginCtrl',
-                controllerUrl: '../../src/app/js/controllers/loginCtrl.js',
+            .state('cart', angularAMD.route({
+                url: '/cart',
+                templateUrl: '../../src/shop/view/cart.html',
+                controller: 'cartCtrl',
+                controllerUrl: '../../src/shop/js/controller/cartCtrl.js',
                 authenticate: false,
                 data: {
-                    pageTitle: 'Login'
+                    pageTitle: 'cart'
+                }
+            }))
+            .state('checkout', angularAMD.route({
+                url: '/checkout?type&item_id',
+                templateUrl: '../../src/shop/view/checkout.html',
+                controller: 'checkoutCtrl',
+                controllerUrl: '../../src/shop/js/controller/checkoutCtrl.js',
+                authenticate: false,
+                data: {
+                    pageTitle: 'cart'
                 }
             }))
     });
-    angularAMD.bootstrap(myApp, false, document.getElementById('mainView'));
-    return myApp
+    angularAMD.bootstrap(shoppingCart, false, document.getElementById('mainView'));
+    return shoppingCart
 })

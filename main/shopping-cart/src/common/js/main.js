@@ -12,7 +12,8 @@ require.config({
         'angular': '../bower_components/angular/angular.min',
         'uirouter': '../bower_components/angular-ui-router/release/angular-ui-router',
         'angularAMD': '../bower_components/angularAMD/angularAMD.min',
-        "app": "src/common/js/app",
+        "shoppingCart": "src/common/js/app",
+        "appCtrl": "src/common/js/controller/appCtrl",
         'dataService': 'src/common/js/services/shoping-data-factory',
     },
 
@@ -24,15 +25,16 @@ require.config({
         'angular': {
             'exports': 'angular'
         },
-        'angularAMD': ['angular'],
+        'bootstrap' : ['jquery'],
+        'angularAMD': ['angular', 'bootstrap'],
         'uirouter': ['angular'],
-        'app' : ['uirouter', 'angularAMD', 'angular'],
-        'dataService' : ['app'],
+        'shoppingCart' : ['angular', 'uirouter', 'angularAMD'],
+        // 'dataService' : ['shoppingCart'],
 
     },
 
     // kick start application
-    deps: ['app', 'dataService'],
+    deps: ['shoppingCart', 'dataService', 'jquery', 'bootstrap', "appCtrl"],
     priority: ["angular"],
     urlArgs:"v=0.0.1" 
 });
