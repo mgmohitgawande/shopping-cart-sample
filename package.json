@@ -1,13 +1,13 @@
 {
     "name": "shopping-cart",
     "version": "1.0.0",
-    "main": "server/server.js",
+    "main": "api/shopping-cart/server/server.js",
     "engines": {
       "node": ">=4"
     },
     "scripts": {
       "lint": "eslint .",
-      "start": "node .",
+      "start": "node api/shopping-cart/server/server.js",
       "posttest": "npm run lint && nsp check"
     },
     "dependencies": {
