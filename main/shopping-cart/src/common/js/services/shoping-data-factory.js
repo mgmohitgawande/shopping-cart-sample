@@ -7,7 +7,7 @@ define(["shoppingCart"], function(shoppingCart) {
         console.log('akwjdhakjwdhakwhdakuwdhiuh')
         var serviceBase = shoppingCartSettings.serverBaseUri
         var crudApi = function(method, model, params){
-            console.log('kkkkk', params)
+            console.log('kkkkk', params, serviceBase)
             return $http({
                 method: method,
                 url: serviceBase + model,
@@ -32,7 +32,7 @@ define(["shoppingCart"], function(shoppingCart) {
                         }, function(error){
                             console.log('aerror in user creation', error)
                             confirm(error.data.error.message);
-                            $state.go('home')
+                            // $state.go('home')
                             failure()
 
                         })
@@ -44,7 +44,7 @@ define(["shoppingCart"], function(shoppingCart) {
                             success()
                         }, function(error){
                             confirm(error.data.error.message);
-                            $state.go('home')
+                            // $state.go('home')
                             $localStorage.user = undefined;
                             failure()
                         })
