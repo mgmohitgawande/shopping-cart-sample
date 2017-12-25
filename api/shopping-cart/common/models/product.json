@@ -1,0 +1,27 @@
+{
+    "name": "Product",
+    "properties": {
+        "id": {
+            "id": true,
+            "type": "string"
+        },
+        "title": {
+            "type": "string",
+            "required": true
+        },
+        "content": {
+            "type": "string"
+        },
+        "image_urls" : {
+            "type" : "array"
+        },
+        "price": {
+            "type": "number"
+        }
+    },
+    "validations": [],
+    "relations": {},
+    "acls": [],
+    "methods": {}
+  }
+  

@@ -1,0 +1,41 @@
+{
+    "name": "Cart",
+    "properties": {
+        "id": {
+            "id": true,
+            "type": "string"
+        },
+        "product_id": {
+            "type": "string",
+            "required": true
+        },
+        "product_title" : {
+            "type": "string",
+            "required": true
+        },
+        "price" : {
+            "type": "number",
+            "required": true
+        },
+        "quantity": {
+            "type": "number",
+            "required": true
+        },
+        "user_id" : {
+            "type": "string",
+            "required": true
+        },
+        "image_url" :{
+            "type" : "string"
+        },
+        "ordered" :{
+            "type" : "boolean",
+            "default" : false
+        }
+    },
+    "validations": [],
+    "relations": {},
+    "acls": [],
+    "methods": {}
+  }
+  
