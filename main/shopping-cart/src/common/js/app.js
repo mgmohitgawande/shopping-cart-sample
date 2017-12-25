@@ -7,7 +7,7 @@ define([
 ], function (angularAMD, angular, uirouter, ngmap) {
     var shoppingCart = angular.module('shoppingCart', ['ui.router', 'ngMap', 'ngStorage'])
     
-    let serverBase = 'http://localhost:8001/api/'
+    let serverBase = window.location.hostname + '/api/'
     
     shoppingCart.constant('shoppingCartSettings', {
         serverBaseUri: serverBase,
