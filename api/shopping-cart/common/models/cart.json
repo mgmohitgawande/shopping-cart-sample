@@ -22,7 +22,7 @@
             "required": true
         },
         "user_id" : {
-            "type" : "string",
+            "type": "string",
             "required": true
         },
         "image_url" :{

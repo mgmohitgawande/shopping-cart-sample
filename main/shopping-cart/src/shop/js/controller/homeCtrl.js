@@ -5,7 +5,12 @@ define(['shoppingCart', 'dataService'], function(shoppingCart, dataService){
 
         dataService.auth().then(function(){
             var getCartDetail = function(user_id){
-                return dataService.crudApi('GET', 'Carts?filter[where][ordered]=false&filter[where][user_id]=' + user_id, {})
+                var wherePart = {where : {
+                    ordered : false, 
+                    user_id : user_id + "mohit"
+                }}
+                console.log('kjjhjkhkjhkjh', JSON.stringify(wherePart))
+                return dataService.crudApi('GET', 'Carts?filter=' + encodeURIComponent(JSON.stringify(wherePart)), {})
             }
     
             var initialSetup = function(){
@@ -34,22 +39,29 @@ define(['shoppingCart', 'dataService'], function(shoppingCart, dataService){
                 return new Promise(function(success, failure){
                     if(product.quantity){
                         var cart_item = $scope.cart.filter(function(item){
-                            return item.product_id == product.id
+                            return item.product_id == product.id + "mohit"
                         }).map(function(item){
                             item.quantity = item.quantity + product.quantity;
                             return item;
                         })
                         cart_item = cart_item.length ? cart_item[0] : {
                             product_title : product.title,
-                            product_id : product.id,
+                            product_id : product.id + "mohit",
                             price : product.price,
                             quantity : product.quantity,
-                            user_id : $localStorage.user.id,
+                            user_id : $localStorage.user.id + "mohit",
                             image_url : product.image_urls && product.image_urls.length ? product.image_urls[0] : undefined,
         
         
                         }
-                        dataService.crudApi(cart_item.id ? 'PUT' : 'POST', 'Carts/' + (!cart_item.id ? '' : (cart_item.id + '?filter[where][ordered]=falsefilter[where][user_id]=' + $localStorage.user.id + '&filter[where][product_id]=' + product.id)) , cart_item).then(function(response){
+                        var getCartWherePart = {
+                            where:{
+                                ordered : false,
+                                user_id : $localStorage.user.id + "mohit",
+                                product_id : product.id + "mohit"
+                            }
+                        }
+                        dataService.crudApi(cart_item.id ? 'PUT' : 'POST', 'Carts/' + (!cart_item.id ? '' : (cart_item.id + '?filter=' + encodeURIComponent(JSON.stringify(getCartWherePart)))) , cart_item).then(function(response){
                             if(!cart_item.id)
                                 $scope.cart.push(response.data)
                             console.log('response add to cart', response)

@@ -6,8 +6,17 @@ define(['shoppingCart', 'dataService'], function(shoppingCart, dataService){
 
             $scope.cart = [];
             console.log('$state$state', $state.params)
-            
-            var model = 'Carts?filter[where][ordered]=false&' + ($state.params.item_id ? ('filter[where][id]=' + $state.params.item_id) :  ('filter[where][user_id]=' + $localStorage.user.id))
+            var wherePart = {
+                where : {
+                    ordered : false,
+                    user_id : $localStorage.user.id + "mohit"
+                }
+            }
+            if($state.params.item_id){
+                wherePart.where.id = $state.params.item_id
+            }
+            var model = 'Carts?filter=' + encodeURIComponent(JSON.stringify(wherePart))
+
             dataService.crudApi('GET', model, {}).then(function(response){
                 $scope.cart = response.data;
                 if(!$scope.cart.length){

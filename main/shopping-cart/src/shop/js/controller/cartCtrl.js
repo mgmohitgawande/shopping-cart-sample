@@ -7,7 +7,13 @@ define(['shoppingCart', 'dataService'], function(shoppingCart, dataService){
 
             $scope.name = 'MOHIT GAWANDE';
             console.log('wajdoaiwjdoiajwodi', dataService)
-            dataService.crudApi('GET', 'Carts?filter[where][ordered]=false&filter[where][user_id]=' + $localStorage.user.id, {}).then(function(response){
+            var cartWherePart = {
+                where : {
+                    ordered : false,
+                    user_id : $localStorage.user.id + "mohit",
+                }
+            }
+            dataService.crudApi('GET', 'Carts?filter=' + encodeURIComponent(JSON.stringify(cartWherePart)), {}).then(function(response){
                 $rootScope.cart = $scope.cart = response.data
             })
 
