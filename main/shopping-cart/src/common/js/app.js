@@ -2,9 +2,10 @@ define([
     'angularAMD',
     'angular',
     'uirouter',
+    'ngmap'
 
-], function (angularAMD, angular, uirouter) {
-    var shoppingCart = angular.module('shoppingCart', ['ui.router'])
+], function (angularAMD, angular, uirouter, ngmap) {
+    var shoppingCart = angular.module('shoppingCart', ['ui.router', 'ngMap', 'ngStorage'])
     
     let serverBase = 'http://localhost:8001/api/'
     
@@ -13,7 +14,7 @@ define([
     });
 
     shoppingCart.config(function ($stateProvider, $urlRouterProvider){
-        console.log('doing  ')
+        console.log('doing ')
         $urlRouterProvider.otherwise("/home");
         $stateProvider
             .state('home', angularAMD.route({

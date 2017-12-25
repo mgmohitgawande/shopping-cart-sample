@@ -5,6 +5,7 @@
         <link href='bower_components/bootstrap/dist/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
         <link href='src/common/assets/font-awesome-4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
         <script data-main="src/common/js/main.js" src="../bower_components/requirejs/require.js"></script>
+        <script src="http://maps.google.com/maps/api/js?key=AIzaSyB5Jh_-jbfaZNME85pGTLgmcmdPZqFxhRA"></script>
         <title>
             Mohit App
         </title>
@@ -13,8 +14,8 @@
     <body>
         <div class="body-wraper">
             <div class="topbar">
-                <div class="topbar-logo-container">
-                    <img class="topbar-logo" src="https://image.freepik.com/free-vector/logo-sample-text_355-558.jpg" alt="">
+                <div class="topbar-logo-container" ui-sref="home">
+                    <img class="topbar-logo" src="https://bower.io/img/bower-logo.png" alt="">
                 </div>
                 <div class="topbar-title-container">
                     <div class="topbar-title-content">
@@ -22,15 +23,15 @@
                     </div>
                 </div>
                 <div class="topbar-cart-logo-container" title="Go to Cart" ui-sref="cart">
-                    <i class="fa fa-shopping-cart fa-5x" aria-hidden="true" title="Go to Cart"></i>
-                    <span class="badge badge-danger">{{cart.length}}</span>
+                    <i class="fa fa-shopping-cart fa-3x" aria-hidden="true" title="Go to Cart" style="color:white;"></i>
+                    <span class="badge badge-danger" style="background-color:#f0ad4e;">{{cart.length}}</span>
                 </div>
             </div>
             <div class="main-container" ui-view="">
             </div>
-            <div class="footer-bar">
+            <!-- <div class="footer-bar">
                 MAIN CONTAINER
-            </div>
+            </div> -->
         </div>
     </body>
 </html>

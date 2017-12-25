@@ -27,6 +27,10 @@
         },
         "image_url" :{
             "type" : "string"
+        },
+        "ordered" :{
+            "type" : "boolean",
+            "default" : false
         }
     },
     "validations": [],

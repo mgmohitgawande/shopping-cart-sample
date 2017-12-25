@@ -1,26 +1,180 @@
-<div class="product-list">
-        <div class="product-item" ng-repeat="product in products">
-            <div class="product-image-container-in-listing">
-                <img class="product-image" ng-src="{{product.image_urls[0]}}" alt="">
+<div class="checkout-container">
+    <div class="step-list-checkout-container">
+        <div class="step-list-checkout" ng-repeat="(stateIndex, state) in stepStates">
+            <div class="btn checkout-step-button" ng-class="{
+                'btn-warning' : state.saved || state.enabled,
+                'btn-default' : !state.saved && !state.enabled
+    
+            }" ng-click="selectState(state, stateIndex)">
+                {{state.step_name}}
             </div>
-            <div class="product-title-n-price-container-in-listing">
-                <div class="product-title-in-listing">
-                    {{product.title}}
-                </div>
-                <div class="product-price-in-listing">
-                    {{product.price}}
+            <i class="fa fa-arrow-right fa-2x" aria-hidden="true" ng-if="stateIndex < stepStates.length - 1"></i>
+        </div>
+    </div>
+    
+    <div class="checkout-step-form-container" ng-repeat="(stateIndex , state) in stepStates" ng-show="state.enabled == true">    
+            <!-- ng-show="state.enabled == true" -->
+        <!-- {{state.step_name}} -->
+        <form class="checkout-forms" name="personalDetailForm" ng-show="state.step_name == 'Personal Detail'">
+                    
+            <div class="form-group">
+                <label for="name" class="cols-sm-2 control-label">Your Name</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" name="name" ng-model="state.workingObj.name" placeholder="Enter your Name" required="required"/>
+                    </div>
                 </div>
             </div>
-            <div class="product-action-in-listing">
-                <div class="btn btn-success product-action-add_to_cart-in-listing">
-                    <span><i class="fa fa-cart-plus" aria-hidden="true"></i></span>
-                    <div>Add To Cart</div>
+
+            <div class="form-group">
+                <label for="email" class="cols-sm-2 control-label">Your Email</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                        <input type="email" class="form-control" name="email" ng-model="state.workingObj.email"  placeholder="Enter your Email" required="required"/>
+                    </div>
                 </div>
-                <div class="btn btn-success product-action-buy-in-listing">
-                    <span><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></span>
-                    <div>Buy</div>
+            </div>
+
+            <div class="form-group">
+                <label for="username" class="cols-sm-2 control-label">Phone Number</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-phone fa" aria-hidden="true"></i></span>
+                        <input type="tel" class="form-control" name="phonenumber" ng-model="state.workingObj.phone" placeholder="Enter your Phone Number" required="required"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group ">
+                <input ng-click="!personalDetailForm.$valid || saveStepDetail(state, stateIndex)" type="submit" class="btn btn-success btn-lg btn-block login-button" value="{{'Save ' + state.step_name}}"></input>
+            </div>
+        </form>
+
+        <form class="checkout-forms" name="deliveryAddressForm" ng-show="state.step_name == 'Delivery Address'">
+                    
+            <div class="form-group" ng-show="!state.useCurrentLocation">
+                <label for="name" class="cols-sm-2 control-label">Address</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" name="name" ng-model="state.workingObj.address" placeholder="Enter your Address" ng-required="!state.useCurrentLocation"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" ng-show="!state.useCurrentLocation">
+                <label for="email" class="cols-sm-2 control-label">Pincode</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" name="email" ng-model="state.workingObj.pincode"  placeholder="Enter your Pincode" ng-required="!state.useCurrentLocation"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" ng-show="!state.useCurrentLocation">
+                <label for="username" class="cols-sm-2 control-label">City</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-phone fa" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" name="phonenumber" ng-model="state.workingObj.city" placeholder="Enter your City" ng-required="!state.useCurrentLocation"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" ng-show="!state.useCurrentLocation">
+                <label for="username" class="cols-sm-2 control-label">State</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-phone fa" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" name="phonenumber" ng-model="state.workingObj.state" placeholder="Enter your State" ng-required="!state.useCurrentLocation"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <input type="checkbox" name="vehicle" ng-model="state.useCurrentLocation"> Use Current Location<br>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" ng-show="state.useCurrentLocation">
+                <div class="cols-sm-10">
+                    <div class="google-mapppp">
+                        <ng-map center="{{deliveryAddress.workingObj.lat}}, {{deliveryAddress.workingObj.lng}}" zoom="10">
+                            <marker position="{{deliveryAddress.workingObj.lat}}, {{deliveryAddress.workingObj.lng}}"></marker>
+                        </ng-map>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input ng-click="!deliveryAddressForm.$valid || saveStepDetail(state, stateIndex)" type="submit" class="btn btn-success btn-lg btn-block login-button" value="{{'Save ' + state.step_name}}"></input>
+            </div>
+            {{state}} {{!state.useCurrentLocation}}
+        </form>
+
+
+
+        <form class="checkout-forms" name="deliveryAddressForm" ng-show="state.step_name == 'Payment Options'">
+                    
+            <div class="form-group" ng-show="!state.useCurrentLocation">
+                <label for="name" class="cols-sm-2 control-label">Payment Option</label>
+                <div class="cols-sm-10">
+                    <input type="radio" class="form-control" name="paymentOption" ng-model="state.workingObj.paymentOption" /> Credit Card
+                    <input type="radio" class="form-control" name="paymentOption" ng-model="state.workingObj.paymentOption" /> Netbanking
+                    <input type="radio" class="form-control" name="paymentOption" ng-model="state.workingObj.paymentOption" /> Cash On Delivery
+                </div>
+            </div>
+            <div class="form-group">
+                <input ng-click="!deliveryAddressForm.$valid || saveStepDetail(state, stateIndex)" type="submit" class="btn btn-success btn-lg btn-block login-button" value="{{'Save ' + state.step_name}}"></input>
+            </div>
+        </form>
+
+
+
+        <div class="cart-product-list" ng-show="state.step_name == 'Order Summay'">
+            <div class="cart-item" ng-repeat="(itemIndex, item) in cart">
+                <div class="order-image-container-in-cart">
+                    <img class="product-image-cart" ng-src="{{item.image_url}}" alt="">
+                </div>
+                <div class="order-item-detail-in-cart">
+                    <div>
+                        <h3>{{item.product_title}}</h3>
+                    </div>
+                    <div>
+                        <div>
+                            <span>Price: </span> <span>{{item.price}}</span>
+                        </div>
+                        <div class="quantity-container-in-listing">
+                            <span class="">
+                                <button type="button" class="btn btn-danger btn-number"  data-type="minus" ng-click="item.quantity = item.quantity <= 0 ? 0 : item.quantity - 1;">
+                                    <span class="glyphicon glyphicon-minus"></span>
+                                </button>
+                            </span>
+                            <input type="number" class="input-number" value=0 min="0" max="6" ng-model="item.quantity">
+                            <span class="">
+                                <button type="button" class="btn btn-warning btn-number" data-type="plus" ng-click="item.quantity = item.quantity >= 6 ? 6 : item.quantity + 1;">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-item-total-price">
+                    <span>Total: </span> <span>{{item.quantity * item.price}}</span>
+                </div>
+                <div class="order-item-action" title="remove from cart" ng-click="removeItemFromCart(item, itemIndex)">
+                    <span><i class="fa fa-times fa-2x" aria-hidden="true"></i></span>
+                </div>
+            </div>
+            <div>
+                <div class="form-group">
+                    <input ng-click="!deliveryAddressForm.$valid || saveStepDetail(state, stateIndex)" type="submit" class="btn btn-primary btn-lg btn-block login-button" value="{{'Save ' + state.step_name}}"></input>
                 </div>
             </div>
         </div>
-        <div style="font-size:30px;">{{!products.length ? 'LOADING ...' : ''}}</div>
+        <!-- {{personalDetailForm.$valid}} -->
     </div>
+</div>

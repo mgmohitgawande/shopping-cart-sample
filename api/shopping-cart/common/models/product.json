@@ -15,8 +15,8 @@
         "image_urls" : {
             "type" : "array"
         },
-        "price" : {
-            "number" : "array"
+        "price": {
+            "type": "number"
         }
     },
     "validations": [],

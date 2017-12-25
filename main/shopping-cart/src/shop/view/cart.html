@@ -4,12 +4,12 @@
             <img class="product-image-cart" ng-src="{{item.image_url}}" alt="">
         </div>
         <div class="order-item-detail-in-cart">
-            <div>
+            <div class="product-title-in-listing">
                 <h3>{{item.product_title}}</h3>
             </div>
             <div>
-                <div>
-                    <span>Price: </span> <span>{{item.price}}</span>
+                <div class="product-price-in-listing">
+                    <span>Price: </span> <span>₹ {{item.price | number : 2}}</span>
                 </div>
                 <div class="quantity-container-in-listing">
                     <span class="">
@@ -19,22 +19,25 @@
                     </span>
                     <input type="number" class="input-number" value=0 min="0" max="6" ng-model="item.quantity">
                     <span class="">
-                        <button type="button" class="btn btn-success btn-number" data-type="plus" ng-click="item.quantity = item.quantity >= 6 ? 6 : item.quantity + 1;">
+                        <button type="button" class="btn btn-warning btn-number" data-type="plus" ng-click="item.quantity = item.quantity >= 6 ? 6 : item.quantity + 1;">
                             <span class="glyphicon glyphicon-plus"></span>
                         </button>
                     </span>
                 </div>
             </div>
         </div>
-        <div class="order-item-total-price">
-            <span>Total: </span> <span>{{item.quantity * item.price}}</span>
+        <div class="product-price-in-listing">
+            <span style="font-weight:600;">Total: </span> <span>₹ {{item.quantity * item.price | number : 2}}</span>
         </div>
         <div class="order-item-action" title="remove from cart" ng-click="removeItemFromCart(item, itemIndex)">
-            <span><i class="fa fa-times fa-2x" aria-hidden="true"></i></span>
+            <span style="float:right;margin:15px;"><i class="fa fa-times fa-2x" aria-hidden="true"></i></span>
         </div>
     </div>
     <div>
-        <button type="button" class="btn btn-success btn-lg" ng-click="checkout()">
+        <div ng-show="!cart.length">
+            CART IS EMPTY
+        </div>
+        <button type="button" class="btn btn-success btn-lg" ng-click="checkout()" ng-show="cart.length">
             CHECKOUT
         </button>
     </div>
