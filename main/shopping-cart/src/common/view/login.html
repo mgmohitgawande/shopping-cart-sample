@@ -1,0 +1,87 @@
+<div class="col-md-12">
+    <div class="row" style="margin-top:100px;">
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <div class="btn btn-primary pull-right col-md-3" ng-click="formData.form_type = 'login';">LOGIN</div>
+            </div>
+            <div class="col-md-6">
+                <div class="btn btn-success pull-left col-md-3" ng-click="formData.form_type = 'signup';">SIGNUP</div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:100px;">
+        <div class="col-md-4">
+        </div>
+
+        <div class="col-md-6">
+            <form class="checkout-forms" name="loginForm" ng-show="formData.form_type == 'login'" ng-submit="!loginForm.$valid || login()">
+                <div class="form-group">
+                    <label for="name" class="cols-sm-2 control-label">Username</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" name="username" ng-model="formData.login.username" placeholder="Enter your Username" required="required"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="username" class="cols-sm-2 control-label">Password</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-key fa" aria-hidden="true"></i></span>
+                            <input type="{{formData.login.showPassword ? 'text' : 'password'}}" class="form-control" name="password" ng-model="formData.login.password" placeholder="Enter your Password" required="required"/>
+                            <span class="input-group-addon"><i class="fa fa-eye fa" aria-hidden="true" ng-click="formData.login.showPassword = !formData.login.showPassword"></i></span>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="form-group ">
+                    <input ng-click="!loginForm.$valid || login()" type="submit" class="btn btn-success btn-lg btn-block login-button" value="LOGIN"></input>
+                    <!-- {{loginForm.$valid}} {{loginForm}} -->
+                </div>
+            </form>
+
+
+            <form class="checkout-forms" name="signupForm" ng-show="formData.form_type == 'signup'" ng-submit="!signupForm.$valid || signup()">
+                <div class="form-group">
+                    <label for="name" class="cols-sm-2 control-label">Username</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" name="username" ng-model="formData.signup.username" placeholder="Enter your Name" required="required"/>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    <label for="email" class="cols-sm-2 control-label">Your Email</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                            <input type="email" class="form-control" name="email" ng-model="formData.signup.email"  placeholder="Enter your Email" required="required"/>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    <label for="username" class="cols-sm-2 control-label">Password</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-key fa" aria-hidden="true"></i></span>
+                            <input type="{{formData.login.showPassword ? 'text' : 'password'}}" class="form-control" name="password" ng-model="formData.signup.password" placeholder="Enter your Password" required="required"/>
+                            <span class="input-group-addon"><i class="fa fa-eye fa" aria-hidden="true" ng-click="formData.signup.showPassword = !formData.signup.showPassword"></i></span>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="form-group ">
+                    <input ng-click="!signupForm.$valid || signup()" type="submit" class="btn btn-success btn-lg btn-block login-button" value="SIGNUP"></input>
+                    {{signupForm.$valid}} {{signupForm}}
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-3">
+        </div>
+    </div>
+</div>
