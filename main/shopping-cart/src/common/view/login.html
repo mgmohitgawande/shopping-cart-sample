@@ -1,11 +1,14 @@
 <div class="col-md-12">
-    <div class="row" style="margin-top:100px;">
+    <div class="row" style="margin-top:100px;text-align:center;font-size:50px;">
+        {{formData.message}}
+    </div>
+    <div class="row" style="margin-top:30px;">
         <div class="col-md-12">
             <div class="col-md-6">
-                <div class="btn btn-primary pull-right col-md-3" ng-click="formData.form_type = 'login';">LOGIN</div>
+                <div class="btn btn-primary pull-right col-md-3" ng-click="formData.form_type = 'login'; formData.message = 'Please Login.'">LOGIN</div>
             </div>
             <div class="col-md-6">
-                <div class="btn btn-success pull-left col-md-3" ng-click="formData.form_type = 'signup';">SIGNUP</div>
+                <div class="btn btn-success pull-left col-md-3" ng-click="formData.form_type = 'signup'; formData.message = 'Please Signup.'">SIGNUP</div>
             </div>
         </div>
     </div>
@@ -76,7 +79,7 @@
     
                 <div class="form-group ">
                     <input ng-click="!signupForm.$valid || signup()" type="submit" class="btn btn-success btn-lg btn-block login-button" value="SIGNUP"></input>
-                    {{signupForm.$valid}} {{signupForm}}
+                    <!-- {{signupForm.$valid}} {{signupForm}} -->
                 </div>
             </form>
         </div>
