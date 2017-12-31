@@ -25,7 +25,7 @@ define(["shoppingCart"], function(shoppingCart) {
                         success()
                     }, function(error){
                         console.log('aerror in user creation', error)
-                        failure()
+                        failure(error)
 
                     })
                 })
@@ -39,7 +39,7 @@ define(["shoppingCart"], function(shoppingCart) {
                         success()
                     }, function(error){
                         $localStorage.user = undefined;
-                        failure()
+                        failure(error)
                     })
                 })
             },

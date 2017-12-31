@@ -1,7 +1,7 @@
 define(['shoppingCart', 'dataService'], function(shoppingCart, dataService){
 
-    shoppingCart.register.controller('loginCtrl', ["$rootScope", "$scope", "$location", "$localStorage", "$state", "dataService", function ($rootScope, $scope, $location, $localStorage, $state, dataService) {
-            
+    shoppingCart.register.controller('loginCtrl', ["$rootScope", "$scope", "$location", "$localStorage", "$state", "dataService", function ($rootScope, $scope, $location, $localStorage, $state, dataService) { 
+        
         $scope.formData = {
             form_type : 'login',
             login : {
@@ -14,15 +14,18 @@ define(['shoppingCart', 'dataService'], function(shoppingCart, dataService){
                 password : '',
                 email : '',
                 showPassword : false
-            }
+            },
+            message : 'Please Login.'
         }
+
         $scope.login = function(){
             console.log('login login login')
             dataService.auth.login($scope.formData.login).then(function(){
                 console.log('success, login')
                 $location.path('/home')
-            }, function(){
-                console.log('faialure, login')
+            }, function(error){
+                console.log('faialure, login', error)
+                $scope.formData.message = error.data.error.message;
             })
         }
 
@@ -30,12 +33,10 @@ define(['shoppingCart', 'dataService'], function(shoppingCart, dataService){
             dataService.auth.signup($scope.formData.signup).then(function(){
                 console.log('success, signup')
                 $location.path('/home')
-            }, function(){
-                console.log('failure, signup')
+            }, function(error){
+                $scope.formData.message = error.data.error.message;
+                console.log('failure, signup', error)
             })
         }
-
-        
-
     }])
 })
