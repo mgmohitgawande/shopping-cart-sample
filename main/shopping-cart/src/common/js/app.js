@@ -19,9 +19,9 @@ define([
         $stateProvider
             .state('home', angularAMD.route({
                 url: '/home',
-                templateUrl: '../../src/shop/view/home.html',
+                templateUrl: '../../shopping-cart/src/shop/view/home.html',
                 controller: 'homeCtrl',
-                controllerUrl: '../../src/shop/js/controller/homeCtrl.js',
+                controllerUrl: '../../shopping-cart/src/shop/js/controller/homeCtrl.js',
                 authenticate: false,
                 resolve: {
                     loggedIn: dataService.$get().auth.isLoggedIn
@@ -32,9 +32,9 @@ define([
             }))
             .state('login', angularAMD.route({
                 url: '/login',
-                templateUrl: '../../src/common/view/login.html',
+                templateUrl: '../../shopping-cart/src/common/view/login.html',
                 controller: 'loginCtrl',
-                controllerUrl: '../../src/common/js/controller/loginCtrl.js',
+                controllerUrl: '../../shopping-cart/src/common/js/controller/loginCtrl.js',
                 authenticate: false,
                 resolve: {
                     loggedIn: dataService.$get().auth.isNotLoggedIn
@@ -45,9 +45,9 @@ define([
             }))
             .state('cart', angularAMD.route({
                 url: '/cart',
-                templateUrl: '../../src/shop/view/cart.html',
+                templateUrl: '../../shopping-cart/src/shop/view/cart.html',
                 controller: 'cartCtrl',
-                controllerUrl: '../../src/shop/js/controller/cartCtrl.js',
+                controllerUrl: '../../shopping-cart/src/shop/js/controller/cartCtrl.js',
                 authenticate: false,
                 resolve: {
                     loggedIn: dataService.$get().auth.isLoggedIn
@@ -58,9 +58,9 @@ define([
             }))
             .state('checkout', angularAMD.route({
                 url: '/checkout?type&item_id',
-                templateUrl: '../../src/shop/view/checkout.html',
+                templateUrl: '../../shopping-cart/src/shop/view/checkout.html',
                 controller: 'checkoutCtrl',
-                controllerUrl: '../../src/shop/js/controller/checkoutCtrl.js',
+                controllerUrl: '../../shopping-cart/src/shop/js/controller/checkoutCtrl.js',
                 authenticate: false,
                 resolve: {
                     loggedIn: dataService.$get().auth.isLoggedIn
