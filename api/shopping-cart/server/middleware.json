@@ -42,7 +42,7 @@
   },
   "files": {
     "loopback#static": {
-      "params": "$!../../../main/shopping-cart"
+      "params": "$!../../../main"
     }
   },
   "final": {
